@@ -170,11 +170,15 @@ Displaying EKG signal graph...
 ```
 > *(Graphical visualization of the ECG signal will be displayed in the Serial Plotter.)*
 
-## Troubleshooting
+## Troubleshooting and problems
 - **No ECG signal detected?** Ensure electrodes are correctly attached.
 - **Unexpected BPM readings?** Check PulseSensor placement and ensure stable contact.
 - **Serial Monitor not displaying data?** Verify baud rate is set to `115200`.
 - **ECG signal not being ploted properly?** You will have to play with the baud rate a bit and also enable the `interpolate` option in the serial ploter provided trough the arduino ide.
+- **Grounding!!** If your electrodes are low quality there might be a chance that the sensor wouldnt detect a GND reference.
+  If the electrodes are from high quality materials, then the module might be expiriencing internal problems with grounding.
+  in order to fix it, touch something metal that has a reference to ground.
+
 If the signal is being plotted too fast, increase the delay so the signal wave comes in slower allowinb you to analize it:
 ```
  void showEKGMode() {
