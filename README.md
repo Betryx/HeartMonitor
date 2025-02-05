@@ -124,7 +124,7 @@ It uses a photodiode or LED to detect pulse-related changes in the blood volume.
 
 If you assemble it even without the box it would still work of course but here are bunch of images that show how it looks like when assemlbed:
     ![Circuit Diagram](./src/Finished_product/Sgloben.jpg)
-    ![Circuit Diagram](./src/Finished_product/Insides.jpg)
+    ![Circuit Diagram](./src/Finished_product/insides.jpg)
     ![Circuit Diagram](./src/Finished_product/working.jpg)
 
 
