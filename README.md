@@ -135,7 +135,7 @@ After starting the system, the **Home Menu** will appear. You can enter the foll
 | Command  | Description |
 |----------|------------|
 | `BPM`    | Starts BPM mode to measure heart rate. |
-| `EKG`    | Starts ECG mode to visualize signals in the Serial Plotter. |
+| `ECG`    | Starts ECG mode to visualize signals in the Serial Plotter. |
 | `HOME`   | Returns to the home menu. |
 
 ## Example Outputs
@@ -213,13 +213,12 @@ If the signal is being plotted too fast, increase the delay so the signal wave c
 ```
 If you have problems with the clearness of the signal, be aware that the sensor again is cheap and is very suceptible to external electromagnetic interference.
 One way to smoothen up the signal is to stay stationary while taking ecg measurments as well as to avoid sharp movements as the sensor would pick up upon the electrical signals in the muscles of your hands.
-Yo
 
 
 ## On a side note from me
 I created this project with the intention to learn about medical equipment and how it processes data that comes from the body in the form of weak elecrical signals also know as biopotenital.
 It was an interesting experience that showed me the hidden world of amplifiers, filters and how sensitive litle creatures those actualy are.
-This is one of the initial projects that will lead me into the path of medical equipment and innovations.
+This is one of the initial projects that will be leading me into the path of medical equipment and innovations.
 Its definetly going to be an interesting walk into the future.
 
 
