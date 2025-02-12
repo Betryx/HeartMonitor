@@ -13,7 +13,7 @@ This heart monitor is built with the AD8232 ECG module and a Pulse Sensor to tra
 - [Usage](#usage)
 - [Commands](#commands)
 - [Example Outputs](#example-outputs)
-- [Troubleshooting](#troubleshooting)
+- [Troubleshooting](#troubleshooting-and-problems)
 - [License](#license)
 # How does the heart work?
 Pack your bags everyone, we are going back to class for some learning 📚📚👨‍🎓
