@@ -1,18 +1,18 @@
 #include <PulseSensorPlayground.h>
 
-const int PulseWire = A4; // Вход за PulseSensor
-const int ECGWire = A5;   // Вход за AD8232
+const int PulseWire = A4; // Input for PulseSensor
+const int ECGWire = A5;   // Input for AD8232
 const int LED = LED_BUILTIN;
-const int LOPlus = 10;  // Детекция на електроди +
-const int LOMinus = 11; // Детекция на електроди  -
+const int LOPlus = 10;  // Electrode detection +
+const int LOMinus = 11; // Electrode detection -
 int Threshold = 515;
-int OperationMode = -1; // Селектор за режим на работа
+int OperationMode = -1; // Selector for operation mode
 PulseSensorPlayground pulseSensor;
 
-unsigned long previousMillis = 0; // Време за забавяне на четене на ЕКГ сигнала
-const long interval = 50; // Интервал за четене на ЕКГ (милисекунди)
+unsigned long previousMillis = 0; // Time delay for ECG signal reading
+const long interval = 50; // Interval for ECG reading (milliseconds)
 
-const int sampleCount = 5; // Брой проби за усредняване
+const int sampleCount = 5; // Number of samples for averaging
 int bpmArray[sampleCount]; 
 int currentIndex = 0; 
 int bpmSum = 0; 
@@ -31,25 +31,25 @@ void setup() {
   showHomeMenu();
 
   while (true) {
-    if (Serial.available()) { // Проверка за наличен сериен интерфейс посредством който развойната платка комуникира с компютъра
+    if (Serial.available()) { // Check for available serial interface through which the development board communicates with the computer
       String command = Serial.readStringUntil('\n');
       command.trim();
       command.toUpperCase();
 
       if (command == "BPM") {
         OperationMode = 0; 
-        Serial.println("Влизате в режим BPM...");
+        Serial.println("Entering BPM mode...");
         break;
       } else if (command == "EKG") {
         OperationMode = 1; 
-        Serial.println("Влизате в режим EKG...");
+        Serial.println("Entering EKG mode...");
         break;
       } else if (command == "HOME") {
         OperationMode = -1;  
         showHomeMenu();
         break;
       } else {
-        Serial.println("Невалидна команда. Въведете 'BPM' за BPM режим, 'EKG' за EKG режим или 'HOME'.");
+        Serial.println("Invalid command. Enter 'BPM' for BPM mode, 'EKG' for EKG mode, or 'HOME'.");
       }
     }
   }
@@ -63,22 +63,22 @@ void loop() {
   }
 }
 
-// Начално меню
+// Home menu
 void showHomeMenu() {
-  Serial.println("\n------ Начално меню ------");
-  Serial.println("Въведете 'BPM' за измерване на пулс");
-  Serial.println("Въведете 'EKG' за графика на ЕКГ сигнал");
-  Serial.println("Въведете 'HOME' за връщане в това меню");
+  Serial.println("\n------ Home Menu ------");
+  Serial.println("Enter 'BPM' to measure heart rate");
+  Serial.println("Enter 'EKG' to display ECG signal graph");
+  Serial.println("Enter 'HOME' to return to this menu");
   Serial.println("-------------------------");
 }
 
-// Режим измерване на пулс
+// Heart rate measurement mode
 void showBPMMode() {
   static bool printedHeader = false; 
 
   if (!printedHeader) {
-    Serial.println("\n------ В режим BPM ------");
-    Serial.println("Измерваме сърдечния ритъм...");
+    Serial.println("\n------ In BPM Mode ------");
+    Serial.println("Measuring heart rate...");
     printedHeader = true;
   }
 
@@ -93,7 +93,7 @@ void showBPMMode() {
 
       int averageBPM = bpmSum / sampleCount; 
       if (lastBPM != averageBPM) { 
-        Serial.print("Пулс (BPM): ");
+        Serial.print("Heart rate (BPM): ");
         Serial.println(averageBPM);
         lastBPM = averageBPM; 
       }
@@ -101,33 +101,33 @@ void showBPMMode() {
   }
 }
 
-// Режим Електрокардиограма
+// Electrocardiogram mode
 void showEKGMode() {
   static bool printedHeader = false; 
   static bool warningDisplayed = false;
 
-  // Проверка за електроди
+  // Check for electrodes
   if (digitalRead(LOPlus) == HIGH || digitalRead(LOMinus) == HIGH) {
-    Serial.println("\n❌ Липса електродна група: закачете електродна група и опитайте отново.");
+    Serial.println("\n❌ No electrode group detected: attach the electrode group and try again.");
     OperationMode = -1; 
     showHomeMenu();
     return;
   }
 
   if (!warningDisplayed) {
-    Serial.println("\n⚠️ Електродна група засечена");
-    Serial.println("📊 ЕКГ се визуализира в сериен плотер");
+    Serial.println("\n⚠️ Electrode group detected");
+    Serial.println("📊 ECG is displayed in the serial plotter");
     warningDisplayed = true;
   }
 
   if (!printedHeader) {
-    Serial.println("\n------ В режим EKG ------");
-    Serial.println("Показваме графика на ЕКГ сигнала...");
+    Serial.println("\n------ In EKG Mode ------");
+    Serial.println("Displaying ECG signal graph...");
     printedHeader = true;
   }
 
-  // Плотване на ЕКГ сигнал
- int ecgSignal = analogRead(ECGWire);
-    Serial.println(ecgSignal);
-    delay(150);
+  // Plot ECG signal
+  int ecgSignal = analogRead(ECGWire);
+  Serial.println(ecgSignal);
+  delay(150);
 }
