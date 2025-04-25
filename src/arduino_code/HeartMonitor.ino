@@ -19,7 +19,7 @@ int bpmSum = 0;
 int lastBPM = 0; 
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(1000000);
   pinMode(LOPlus, INPUT);
   pinMode(LOMinus, INPUT);
 
@@ -128,6 +128,6 @@ void showEKGMode() {
 
   // Plot ECG signal
   int ecgSignal = analogRead(ECGWire);
-  Serial.println(ecgSignal);
-  delay(150);
+  Serial.println(-1*ecgSignal);
+  delay(40);
 }
