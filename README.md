@@ -208,8 +208,8 @@ If the signal is being plotted too fast, increase the delay so the signal wave c
 
   // Plot EKG signal
   int ecgSignal = analogRead(ECGWire);
-  Serial.println(ecgSignal);
-  ** delay(150); **
+  Serial.println(-1*ecgSignal);
+  ** delay(40); **
 }
 ```
 If you have problems with the clearness of the signal, be aware that the sensor again is cheap and is very suceptible to external electromagnetic interference.
