@@ -168,6 +168,7 @@ Displaying EKG signal graph...
 750
 600
 ```
+![Circuit Diagram](https://media.discordapp.net/attachments/966724073562468372/1361403807593922671/image.png?ex=680c7959&is=680b27d9&hm=33a05d80e1e838ce49e4a5567d6aa9c34b07b24782667b2859bb28b0899c4582&=&format=webp&quality=lossless&width=1730&height=723)
 > *(Graphical visualization of the ECG signal will be displayed in the Serial Plotter.)*
 
 ## Troubleshooting and problems
